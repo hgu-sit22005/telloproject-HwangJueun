@@ -3,8 +3,16 @@
 #include "TelloPro.h"
 #include "takeoff.h"
 #include "land.h"
+#include "up.h"
+#include "down.h"
+#include "left.h"
+#include "right.h"
+#include "forward.h"
+#include "back.h"
+#include "cw.h"
+#include "ccw.h"
 
-TelloPro* get_instance(boost::python::str _inst)
+TelloPro* get_instance(boost::python::str _inst, int _val)
 {
 	std::string instance = boost::python::extract<std::string>(_inst);
 
@@ -12,6 +20,22 @@ TelloPro* get_instance(boost::python::str _inst)
 	   return new Takeoff;
 	else if(instance == "land")
 		return new Land;
+	else if(instance == "up")
+		return new up(_val);
+	else if(instance == "down")
+		return new down(_val);
+	else if(instance == "left")
+		return new left(_val);
+	else if(instance == "right")
+		return new right(_val);
+	else if(instance == "forward")
+		return new forward(_val);
+	else if(instance == "back")
+		return new back(_val);
+	else if(instance == "cw")
+		return new cw(_val);
+	else if(instance == "ccw")
+		return new ccw(_val);
 	else
 		return nullptr;
 }
